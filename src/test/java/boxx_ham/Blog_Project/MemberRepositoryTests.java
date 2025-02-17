@@ -98,4 +98,18 @@ public class MemberRepositoryTests {
         // then
         assertThat(memberRepository.findAll().size()).isZero();
     }
+
+    // 수정 -> 조회 후 트랜잭션 범위 내에서 필드값 변경
+    @Sql("/insert-members.sql")
+    @Test
+    void update() {
+        // given
+        Member member = memberRepository.findById(5L).get();
+
+        // when
+        member.changeName("BC");
+
+        // then
+        assertThat(memberRepository.findById(5L).get().getName()).isEqualTo("BC");
+    }
 }
