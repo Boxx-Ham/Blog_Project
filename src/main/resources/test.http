@@ -1,2 +1,8 @@
-# member GET 요청
-GET http://localhost:8080/test
+### 게시글 생성 요청 (POST)
+POST http://localhost:8080/api/articles
+Content-Type: application/json
+
+{
+    "title": "제목",
+    "content": "내용"
+}
