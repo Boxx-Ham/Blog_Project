@@ -1,5 +1,7 @@
 package boxx_ham.Blog_Project.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import boxx_ham.Blog_Project.domain.Article;
@@ -15,5 +17,22 @@ public class BlogService {
     // 블로그 글 추가 메서드
     public Article save(AddArticleRequest request) {    // save()로 AddArticleRequest 클래스에 저장된 값들을 article 데이터베이스에 저장
         return blogRepository.save(request.toEntity());
+    }
+
+    // 모든 블로그 글 조회 메서드
+    public List<Article> findAll() {
+        return blogRepository.findAll();
+    }
+
+    // 하나의 블로그 글 조회 메서드
+    public Article findById(long id) {
+        // id가 없으면 IllegalArgumentException 예외 발생
+        return blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+    }
+
+    // 하나의 블로그 글 삭제 메서드
+    public void delete(long id) {
+        blogRepository.deleteById(id);
     }
 }
