@@ -48,6 +48,27 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'	// H2 데이터베이스(인메모리 데이터베이스)
 	compileOnly 'org.projectlombok:lombok'	// 롬복
 	annotationProcessor 'org.projectlombok:lombok'
+
+	/*
+     * Thymeleaf
+	 * 템플릿 엔진(스프링 서버에서 데이터를 받아 우리가 보는 웹 페잊, 즉 HTML 상에 그 데이터를 넣어 보여주는 도구)
+	 * 
+	 * 타임리프 표현식
+	 * ${...} : 변수의 값 표현식
+	 * #{...} : 속성 파일 값 표현식
+	 * @{...} : URL 표현식
+	 * *{...} : 선택한 변수의 표현식 (th:object에서 선택한 객체에 접근)
+	 *
+	 * 타임리프 문법
+	 * th:text : 텍스트 표현 시 사용 (e.g., th:text=${person.name})
+	 * th:each : 컬렉션 반복 시 사용 (e.g., th:each="person:${persons}")
+	 * th:if : 조건이 true인 때만 표시 (e.g., th:if="${person.age}>=20")
+	 * th:unless : 조건이 false인 때만 표시 (e.g., th:unless="${person.age}>=20")
+	 * th:href : 이동 결로 (e.g., th:href="@{/persons(id=${person.id})}")
+	 * th:with : 변숫값으로 지정 (e.g., th:with="name=${person.name}")
+	 * th:object : 선택한 객체로 지정 (e.g., th:object="${person}")
+	 */
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 tasks.named('test') {
