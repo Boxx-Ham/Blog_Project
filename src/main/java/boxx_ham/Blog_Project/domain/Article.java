@@ -46,4 +46,10 @@ public class Article {
         this.title = title;
         this.content = content;
     }
+
+    // 블로그 수정 메서드 (엔티티에 요청받은 내용으로 값 수정)
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

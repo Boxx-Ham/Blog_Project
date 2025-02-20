@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import boxx_ham.Blog_Project.domain.Article;
 import boxx_ham.Blog_Project.dto.AddArticleRequest;
+import boxx_ham.Blog_Project.dto.UpdateArticleRequest;
 import boxx_ham.Blog_Project.repository.BlogRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor    // final이 붙거나 @NotNul이 붙은 필드의 생성자 추가
@@ -34,5 +36,15 @@ public class BlogService {
     // 하나의 블로그 글 삭제 메서드
     public void delete(long id) {
         blogRepository.deleteById(id);
+    }
+
+    // 하나의 블로그 글 수정 메서드
+    @Transactional  // 트랜잭션 메서드 : 매칭한 메서드를 하나의 트랜잭션으로 묶는 역할
+    public Article update(long id, UpdateArticleRequest request) {
+        Article article = blogRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+
+        article.update(request.getTitle(), request.getContent());
+
+        return article;
     }
 }

@@ -14,3 +14,13 @@ GET http://localhost:8080/api/articles
 
 ### 1번 게시글 삭제 요청 (DELETE)
 DELETE http://localhost:8080/api/articles/1
+
+
+### 1번 게시글 수정 요청 (PUT)
+PUT http://localhost:8080/api/articles/1
+Content-Type: application/json
+
+{
+    "title": "새 블로그",
+    "content": "새로운 글 한 번 써볼까?"
+}
